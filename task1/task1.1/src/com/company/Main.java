@@ -52,7 +52,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int number = 12;
+        int number = 500;
         System.out.println("Десятичная: "+number);
         System.out.println("Двоичная: "+toBinary(number));
         System.out.println("Восьмиричная: "+toOctal(number));
