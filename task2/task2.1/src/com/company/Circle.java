@@ -25,7 +25,6 @@ public class Circle extends Shape {
     public String draw() {
         double s = new BigDecimal(calcArea()).setScale(2, RoundingMode.UP).doubleValue();
         String str = this+"; area="+s;
-       // System.out.printf("%s; area=%.2f\n", this, calcArea());
         return str;
     }
 }
