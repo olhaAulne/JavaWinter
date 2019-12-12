@@ -1,4 +1,6 @@
-package com.company;
+package com.company.model.entity;
+
+import com.company.model.Drawable;
 
 public abstract class Shape implements Drawable {
     private String colorShape;
@@ -20,5 +22,11 @@ public abstract class Shape implements Drawable {
         return getClass().getSimpleName() +
                 ": colorShape=" + colorShape;
     }
+
+    @Override
+    public String draw() {
+        return String.format("%s; area=%.2f\n", this, calcArea());
+    }
+
     public abstract double calcArea();
 }

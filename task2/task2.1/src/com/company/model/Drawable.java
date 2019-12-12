@@ -1,4 +1,4 @@
-package com.company;
+package com.company.model;
 
 public interface Drawable {
     String draw();

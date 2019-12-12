@@ -1,7 +1,4 @@
-package com.company;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+package com.company.model.entity;
 
 public class Circle extends Shape {
     private double r;
@@ -21,10 +18,10 @@ public class Circle extends Shape {
         return Math.PI*Math.pow(r,2);
     }
 
-    @Override
+  /*  @Override
     public String draw() {
         double s = new BigDecimal(calcArea()).setScale(2, RoundingMode.UP).doubleValue();
         String str = this+"; area="+s;
         return str;
-    }
+    }*/
 }

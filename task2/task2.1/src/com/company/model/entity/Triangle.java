@@ -1,6 +1,4 @@
-package com.company;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+package com.company.model.entity;
 
 public class Triangle extends Shape {
     private double a, b, c;
@@ -23,10 +21,5 @@ public class Triangle extends Shape {
         return Math.sqrt(p*(p-a)*(p-b)*(p-c));
     }
 
-    @Override
-    public String draw() {
-        double s = new BigDecimal(calcArea()).setScale(2, RoundingMode.UP).doubleValue();
-        String str = this+"; area="+s;
-        return str;
-    }
+
 }

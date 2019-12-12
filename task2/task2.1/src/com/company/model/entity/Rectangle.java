@@ -1,7 +1,4 @@
-package com.company;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+package com.company.model.entity;
 
 public class Rectangle extends Shape {
     private double w;
@@ -22,11 +19,5 @@ public class Rectangle extends Shape {
     @Override
     public double calcArea() { return w * h;}
 
-    @Override
-    public String draw() {
-        double s = new BigDecimal(calcArea()).setScale(2, RoundingMode.UP).doubleValue();
-        String str = this+"; area="+s;
-      //  System.out.printf("%s; area=%.2f\n", this, calcArea());
-        return str;
-    }
+
 }
