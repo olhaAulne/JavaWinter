@@ -1,12 +1,8 @@
 package com.company.controller;
 
-import com.company.model.AreaComparation;
-import com.company.model.ColorComparation;
 import com.company.model.ShapeModel;
-import com.company.view.InputData;
 import com.company.view.ShapeView;
 
-import java.util.Comparator;
 
 public class ShapeController {
     private ShapeModel model = new ShapeModel();

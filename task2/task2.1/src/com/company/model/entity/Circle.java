@@ -18,10 +18,9 @@ public class Circle extends Shape {
         return Math.PI*Math.pow(r,2);
     }
 
-  /*  @Override
-    public String draw() {
-        double s = new BigDecimal(calcArea()).setScale(2, RoundingMode.UP).doubleValue();
-        String str = this+"; area="+s;
-        return str;
-    }*/
+    public static Circle parseShape(String data) {
+        String[] tokens = data.split("[:,]");
+        return new Circle(tokens[1],
+                Double.parseDouble(tokens[2]));
+    }
 }
