@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestRunner.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-course</a> &gt; <a href="index.source.html" class="el_package">org.lesson.tester</a> &gt; <span class="el_source">TestRunner.java</span></div><h1>TestRunner.java</h1><pre class="source lang-java linenums">package org.lesson.tester;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L9">public class TestRunner {</span>
+    public void run(Class&lt;?&gt; clazz) throws Exception {
+<span class="nc" id="L11">        final Constructor&lt;?&gt; constructor = clazz.getConstructor();</span>
+<span class="nc" id="L12">        final Object object = constructor.newInstance();</span>
+<span class="nc" id="L13">        final Method[] methods = clazz.getDeclaredMethods();</span>
+<span class="nc" id="L14">        List&lt;Method&gt; testMethods = getMethodsByAnnotation(Test.class, methods);</span>
+<span class="nc" id="L15">        List&lt;Method&gt; beforeMethods = getMethodsByAnnotation(Before.class, methods);</span>
+<span class="nc" id="L16">        List&lt;Method&gt; afterMethods = getMethodsByAnnotation(After.class, methods);</span>
+<span class="nc" id="L17">        List&lt;Method&gt; beforeAllMethods = getMethodsByAnnotation(BeforeAll.class, methods);</span>
+<span class="nc" id="L18">        List&lt;Method&gt; afterAllMethods = getMethodsByAnnotation(AfterAll.class, methods);</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        for (Method beforeAllMethod : beforeAllMethods) {</span>
+<span class="nc" id="L20">            beforeAllMethod.invoke(object);</span>
+<span class="nc" id="L21">        }</span>
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        for (Method testMethod : testMethods) {</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            for (Method beforeMethod : beforeMethods) {</span>
+<span class="nc" id="L24">                beforeMethod.invoke(object);</span>
+<span class="nc" id="L25">            }</span>
+<span class="nc" id="L26">            testMethod.invoke(object);</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">            for (Method afterMethod : afterMethods) {</span>
+<span class="nc" id="L28">                afterMethod.invoke(object);</span>
+<span class="nc" id="L29">            }</span>
+<span class="nc" id="L30">        }</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for (Method afterAllMethod : afterAllMethods) {</span>
+<span class="nc" id="L32">            afterAllMethod.invoke(object);</span>
+<span class="nc" id="L33">        }</span>
+<span class="nc" id="L34">    }</span>
+
+    private List&lt;Method&gt; getMethodsByAnnotation(Class&lt;? extends Annotation&gt; annotation, Method[] methods) {
+<span class="nc" id="L37">        final List&lt;Method&gt; tempMethods = new ArrayList&lt;Method&gt;();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        for (Method method : methods) {</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            if (method.isAnnotationPresent(annotation)) {</span>
+<span class="nc" id="L40">                tempMethods.add(method);</span>
+            }
+        }
+<span class="nc" id="L43">        return tempMethods;</span>
+    }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

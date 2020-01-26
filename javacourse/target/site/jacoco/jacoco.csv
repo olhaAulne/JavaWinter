@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+java-course,com.bank.utility,CollectionUtility,7,0,2,0,1,0,2,0,1,0
+java-course,com.bank.domain,Account,38,0,0,0,9,0,5,0,5,0
+java-course,com.bank.domain,User.Builder,26,0,0,0,9,0,5,0,5,0
+java-course,com.bank.domain,User,134,0,14,0,22,0,16,0,9,0
+java-course,org.lesson,Calculator,0,39,0,7,0,9,0,7,0,2
+java-course,org.lesson,A,14,0,0,0,7,0,3,0,3,0
+java-course,org.lesson,Main,65,0,0,0,14,0,2,0,2,0
+java-course,com.bank.repository.impl,UserRepositoryImpl,17,0,0,0,8,0,7,0,7,0
+java-course,com.bank.repository.impl,AccountRepositoryImpl,10,0,0,0,6,0,6,0,6,0
+java-course,com.bank,ConsoleApplication,16,0,0,0,8,0,2,0,2,0
+java-course,org.lesson.tester,TesterDemo,11,0,0,0,4,0,2,0,2,0
+java-course,org.lesson.tester,MyTest,31,0,0,0,13,0,8,0,8,0
+java-course,org.lesson.tester,TestRunner,157,0,14,0,30,0,10,0,3,0
+java-course,org.lesson2,A,25,0,0,0,7,0,4,0,4,0
+java-course,org.lesson2,Main,33,0,0,0,10,0,2,0,2,0
+java-course,org.lesson2,B,49,0,2,0,8,0,6,0,5,0

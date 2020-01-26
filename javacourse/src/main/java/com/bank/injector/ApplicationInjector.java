@@ -4,6 +4,7 @@ import com.bank.dao.ConnectorDB;
 import com.bank.dao.UserDao;
 import com.bank.dao.impl.UserDaoImpl;
 import com.bank.domain.User;
+import com.bank.menu.BankController;
 import com.bank.menu.View;
 import com.bank.service.PasswordEncryptor;
 import com.bank.service.UserService;
@@ -24,7 +25,7 @@ public class ApplicationInjector {
     private static final UserDao USER_REPOSITORY = new UserDaoImpl(CONNECTOR);
 
     private static final UserService USER_SERVICE = new UserServiceImpl(USER_REPOSITORY, PASSWORD_ENCRIPTOR, USER_VALIDATOR);
-    private static final View VIEW = new View(USER_SERVICE);
+    private static final BankController CONTROLLER = new BankController(USER_SERVICE);
 
     private ApplicationInjector() {
     }
@@ -50,7 +51,7 @@ public class ApplicationInjector {
         return USER_REPOSITORY;
     }
 
-    public static View getView() {
-        return VIEW;
+    public static BankController getController() {
+        return CONTROLLER;
     }
 }
