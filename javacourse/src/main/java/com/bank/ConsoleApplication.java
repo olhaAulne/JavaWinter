@@ -7,6 +7,6 @@ public class ConsoleApplication {
     public static void main(String[] args) {
 
         ApplicationInjector injector = ApplicationInjector.getInstance();
-        injector.getView().run();
+        injector.getController().run();
     }
 }
