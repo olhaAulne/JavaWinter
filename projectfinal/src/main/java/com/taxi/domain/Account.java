@@ -3,12 +3,18 @@ package com.taxi.domain;
 public class Account {
     private final Integer id;
     private final User user;
-    private final Integer discount;
+    private final String name;
+    private final String surname;
+    private final String telephoneNumber;
+    private final Integer sale;
 
-    public Account(Integer id, User user, Integer discount) {
+    public Account(Integer id, User user, String name, String surname, String telephoneNumber, Integer sale) {
         this.id = id;
         this.user = user;
-        this.discount = discount;
+        this.name = name;
+        this.surname = surname;
+        this.telephoneNumber = telephoneNumber;
+        this.sale = sale;
     }
 
     public Integer getId() {
@@ -20,14 +26,16 @@ public class Account {
     }
 
     public Integer getDiscount() {
-        return discount;
+        return sale;
     }
 
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", discount=" + discount +
+                ", name=" + name + " " + surname +
+                ", telephone=" + telephoneNumber +
+                ", sale=" + sale +
                 '}';
     }
 }
