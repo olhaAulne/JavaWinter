@@ -54,8 +54,7 @@ public class UserDaoImpl extends AbstractCrudDaoImpl<User> implements UserDao {
                      connector.getConnection().prepareStatement(SAVE_QUERY)) {
             prepareStatementForInsert(preparedStatement, entity);
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             LOGGER.error(e.getMessage());
             throw new DataBaseSqlRuntimeException(e.getMessage(), e);
         }
@@ -116,10 +115,9 @@ public class UserDaoImpl extends AbstractCrudDaoImpl<User> implements UserDao {
     public void update(User entity) {
         try (final PreparedStatement preparedStatement =
                      connector.getConnection().prepareStatement(UPDATE_QUERY)) {
-            prepareStatementForUpdate(preparedStatement,entity);
+            prepareStatementForUpdate(preparedStatement, entity);
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             LOGGER.error(e.getMessage());
             throw new DataBaseSqlRuntimeException(e.getMessage(), e);
         }
