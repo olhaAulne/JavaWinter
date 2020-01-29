@@ -1,6 +1,6 @@
 package com.bank.menu;
 
-import com.bank.domain.User;
+import com.bank.entity.User;
 import com.bank.service.UserService;
 
 import java.util.Locale;

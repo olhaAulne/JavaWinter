@@ -1,7 +1,7 @@
 package com.bank.service;
 
-import com.bank.domain.User;
-import com.bank.dao.impl.Pageable;
+import com.bank.entity.User;
+import com.bank.dao.domain.Pageable;
 
 
 public interface UserService {

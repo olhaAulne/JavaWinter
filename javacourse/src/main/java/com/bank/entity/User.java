@@ -1,4 +1,4 @@
-package taxi.domain;
+package com.bank.entity;
 
 import java.util.List;
 import java.util.Objects;

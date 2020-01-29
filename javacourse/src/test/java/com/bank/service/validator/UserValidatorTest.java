@@ -1,6 +1,6 @@
 package com.bank.service.validator;
 
-import com.bank.domain.User;
+import com.bank.entity.User;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

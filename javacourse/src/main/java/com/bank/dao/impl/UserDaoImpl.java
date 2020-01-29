@@ -1,9 +1,9 @@
 package com.bank.dao.impl;
 
 import com.bank.dao.ConnectorDB;
-import com.bank.dao.DataBaseSqlRuntimeException;
 import com.bank.dao.UserDao;
-import com.bank.domain.User;
+import com.bank.dao.exception.DataBaseSqlRuntimeException;
+import com.bank.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,41 +24,16 @@ public class UserDaoImpl extends AbstractCrudDaoImpl<User> implements UserDao {
     private static final String DELETE_BY_ID_QUERY = "DELETE FROM users WHERE id = ?";
     private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
 
+
     public UserDaoImpl(ConnectorDB connector) {
         super(connector, FIND_BY_ID_QUERY, FIND_ALL_QUERY, SAVE_QUERY, UPDATE_QUERY, DELETE_BY_ID_QUERY);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        try (final PreparedStatement preparedStatement =
-                     connector.getConnection().prepareStatement(FIND_BY_EMAIL_QUERY)) {
-            preparedStatement.setString(1, email);
-
-            try (final ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return Optional.of(mapResultSetToEntity(resultSet));
-                }
-            }
-
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            throw new DataBaseSqlRuntimeException("", e);
-        }
-
-        return Optional.empty();
+        return findByParam(email, FIND_BY_EMAIL_QUERY, STRING_PARAM_SETTER);
     }
 
-    @Override
-    public void save(User entity) {
-        try (final PreparedStatement preparedStatement =
-                     connector.getConnection().prepareStatement(SAVE_QUERY)) {
-            prepareStatementForInsert(preparedStatement, entity);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            throw new DataBaseSqlRuntimeException(e.getMessage(), e);
-        }
-    }
 
     @Override
     public List<User> findAll(int page, int itemPerPage) {
@@ -75,14 +50,10 @@ public class UserDaoImpl extends AbstractCrudDaoImpl<User> implements UserDao {
 
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-            throw new DataBaseSqlRuntimeException("", e);
+            throw new DataBaseSqlRuntimeException(e.getMessage(), e);
         }
     }
 
-    @Override
-    public long count() {
-        return 0;
-    }
 
     protected User mapResultSetToEntity(ResultSet resultSet) throws SQLException {
         return User.builder()
@@ -110,54 +81,9 @@ public class UserDaoImpl extends AbstractCrudDaoImpl<User> implements UserDao {
         statement.setString(4, entity.getTelephoneNumber());
     }
 
-
     @Override
-    public void update(User entity) {
-        try (final PreparedStatement preparedStatement =
-                     connector.getConnection().prepareStatement(UPDATE_QUERY)) {
-            prepareStatementForUpdate(preparedStatement, entity);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            throw new DataBaseSqlRuntimeException(e.getMessage(), e);
-        }
-
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        Optional<User> user = findById(id);
-        if (user.isPresent()) {
-            try (final PreparedStatement preparedStatement =
-                         connector.getConnection().prepareStatement(FIND_BY_EMAIL_QUERY)) {
-                preparedStatement.setInt(1, id);
-                preparedStatement.executeUpdate();
-
-            } catch (SQLException e) {
-                LOGGER.error(e.getMessage());
-                throw new DataBaseSqlRuntimeException("", e);
-            }
-        }
-    }
-
-    @Override
-    public Optional<User> findById(Integer id) {
-        try (final PreparedStatement preparedStatement =
-                     connector.getConnection().prepareStatement(FIND_BY_ID_QUERY)) {
-            preparedStatement.setInt(1, id);
-
-            try (final ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return Optional.of(mapResultSetToEntity(resultSet));
-                }
-            }
-
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            throw new DataBaseSqlRuntimeException(e.getMessage(), e);
-        }
-
-        return Optional.empty();
+    public long count() {
+        return 0;
     }
 }
 
